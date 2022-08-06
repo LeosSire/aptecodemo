@@ -39,6 +39,9 @@ import {
   PerfectScrollbarConfigInterface,
   PerfectScrollbarModule,
 } from 'ngx-perfect-scrollbar';
+import { LoginService } from './services/login.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -56,31 +59,35 @@ const APP_CONTAINERS = [
     ...APP_CONTAINERS
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     AvatarModule,
+    BadgeModule,
     BreadcrumbModule,
-    FooterModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    ButtonGroupModule,
+    ButtonModule,
+    CardModule,
     DropdownModule,
+    FooterModule,
+    FormModule,
+    FormsModule,
     GridModule,
     HeaderModule,
-    SidebarModule,
+    HttpClientModule,
     IconModule,
+    ListGroupModule,
+    ListGroupModule,
     NavModule,
-    ButtonModule,
-    FormModule,
-    UtilitiesModule,
-    ButtonGroupModule,
-    SidebarModule,
-    SharedModule,
-    TabsModule,
-    ListGroupModule,
+    PerfectScrollbarModule,
     ProgressModule,
-    BadgeModule,
-    ListGroupModule,
-    CardModule,
-    PerfectScrollbarModule
+    ReactiveFormsModule,
+    SharedModule,
+    SidebarModule,
+    SidebarModule,
+    TabsModule,
+    UtilitiesModule,
+
   ],
   providers: [
     {
@@ -88,7 +95,8 @@ const APP_CONTAINERS = [
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
     IconSetService,
-    Title
+    LoginService,
+    Title,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-default-header',
@@ -9,13 +8,14 @@ import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 })
 export class DefaultHeaderComponent extends HeaderComponent {
 
-  @Input() sidebarId: string = "sidebar";
+  @Input() sidebarId = "sidebar";
 
-  public newMessages = new Array(4)
-  public newTasks = new Array(5)
-  public newNotifications = new Array(5)
+  userDisplayName:string;
 
-  constructor(private classToggler: ClassToggleService) {
+  constructor(
+    private classToggler: ClassToggleService,
+    public authService: AuthService) {
     super();
+    this.userDisplayName = `${authService.getUserData('firstname')} ${authService.getUserData('surname')}`;
   }
 }

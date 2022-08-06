@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -6,7 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  username = '';
+  password = '';
+  constructor(public authService: AuthService) { }
 
-  constructor() { }
-
+  login(){
+    if (this.username && this.password){
+      this.authService.authLogin(this.username, this.password)
+    }    
+  }
 }

@@ -6,6 +6,7 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { CubesService } from 'src/app/services/cubes.service';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DashboardComponent } from './dashboard.component';
     DashboardRoutingModule,
     IconModule
   ],
-  declarations: [DashboardComponent]
+  declarations: [DashboardComponent],
+  providers: [ CubesService, ]
 })
 export class DashboardModule {
 }
