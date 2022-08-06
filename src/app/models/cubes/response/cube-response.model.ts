@@ -1,3 +1,7 @@
+import { Count } from "./count.model";
+import { DimensionResult } from "./dimention-result.model";
+import { MeasureResult } from "./measure-result.model";
+
 export interface CubeResponse {
     title: string;
     notes: string;
@@ -9,21 +13,4 @@ export interface CubeResponse {
     dimensionResults: DimensionResult[];
     measureResults: MeasureResult[];
     counts: Count[];
-}
-
-export interface DimensionResult {
- id: string;
- headerCodes: string;
- headerDescription: string;   
-}
-
-export interface MeasureResult {
-    id: string;
-    rows: string;
-    cells: string;
-}
-
-export interface Count {
-    tableName: string;
-    countValue: number;
 }

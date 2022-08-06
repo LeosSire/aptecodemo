@@ -1,4 +1,4 @@
-export interface Dimensions {
+export interface Dimension {
     id: string,
     type: string,
     variableName: string,

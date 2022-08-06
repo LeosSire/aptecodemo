@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TableModule } from '@coreui/angular';
 import { Observable } from 'rxjs';
-import { CubeRequest, SelectionModel, TableModel } from '../models/cubes/cube-request.model';
-import { Banding, Dimensions } from '../models/cubes/dimensions.model';
-import { Measures } from '../models/cubes/measures.model';
+import { Banding, CubeRequest, Dimension, Measure, SelectionModel, TableModel } from '../models/cubes/request';
+import { CubeResponse } from '../models/cubes/response/cube-response.model';
+import { CubeTable } from '../models/cubes/table.model';
+
 import { AuthService } from './auth.service';
 import { BaseService } from './base.service';
 
@@ -21,7 +21,7 @@ export class CubesService {
       .set('Authorization', `Bearer ${this.authService.getTokenData('accessToken')}`);
   }
 
-  calculateSync(): Observable<any> {
+  calculateSync(): Observable<CubeResponse> {
     const cubesQuery = {
       baseQuery: {
         selection: {          
@@ -36,15 +36,15 @@ export class CubesService {
           id: "dimension-1",
           type: "Selector",
           variableName: "boDest"
-        } as Dimensions,
+        } as Dimension,
         {
           id: "dimension-2",
           type: "DateBand",
           variableName: "boDate",
           banding: {
-            type: "Weeks"
+            type: "Years"
           } as Banding,
-        } as Dimensions,
+        } as Dimension,
       ],
       measures: [
         {
@@ -52,10 +52,24 @@ export class CubesService {
           displayName: "Count",
           resolveTableName: "People",
           function: "Count"
-        } as Measures
+        } as Measure
       ],
       subTotals: "All"
     } as CubeRequest;
-    return this.http.post<any>('https://www.tealgreenholidays.co.uk/OrbitAPI/CloudDemo/Cubes/CloudDemo/CalculateSync', cubesQuery, { headers: this.headers })
+    return this.http.post<CubeResponse>('https://www.tealgreenholidays.co.uk/OrbitAPI/CloudDemo/Cubes/CloudDemo/CalculateSync', cubesQuery, { headers: this.headers })
+  }
+
+  mapCubeApiResponseToCubeTable(cubeResponse: CubeResponse, index = 0): CubeTable {
+    const colDescription = cubeResponse.dimensionResults[index * 2].headerDescriptions.split('\t');
+    const rowDescription = cubeResponse.dimensionResults[index * 2 + 1].headerDescriptions.split('\t');
+    const data = cubeResponse.measureResults[index * 2].rows.map(row => { return row.split('\t')});
+    
+    const cubeTable = {
+      data: data,
+      columnDescriptions: colDescription,
+      rowDescriptions: rowDescription,
+    } as CubeTable
+
+    return cubeTable;
   }
 }

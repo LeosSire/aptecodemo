@@ -1,20 +1,13 @@
-import { Dimensions } from "./dimensions.model"
-import { Measures } from "./measures.model"
+import { Dimension } from "./dimensions.model"
+import { Measure } from "./measures.model"
+import { SelectionModel } from "./selection.model"
 
 export interface CubeRequest {
   baseQuery: SelectionModel;
   resolveTableName: string;
   storage: string;
   leftJoin: boolean;
-  dimensions: Dimensions[];
-  measures: Measures[];
+  dimensions: Dimension[];
+  measures: Measure[];
   subTotals: string | number;
-}
-
-export interface SelectionModel {
-  selection: TableModel;
-}
-
-export interface TableModel {
-  tableName: string;
 }
