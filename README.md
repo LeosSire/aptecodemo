@@ -12,10 +12,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Using
 
-Use tealgreenholidays credentials to log into application. 
-Verify the `Welcome {first name} {last name}` is correct for your user.
-Data table should load automatically showing full data set.
-Use dropdowns to refine table data.
+1. Use tealgreenholidays credentials to log into application. 
+2. Verify the `Welcome {first name} {last name}` is correct for your user.
+3. Data table should load automatically showing full data set.
+4. Use dropdowns to refine table data.
 
 ## Build
 
@@ -26,7 +26,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 2. Create models for type safety replacing instances of `any` in type declarations
 3. Update user image to reflect actual user logged in. 
 4. Add toaster for service errors.
-
 
 ## Further help
 
