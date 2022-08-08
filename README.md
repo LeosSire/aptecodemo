@@ -26,6 +26,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 2. Create models for type safety replacing instances of `any` in type declarations
 3. Update user image to reflect actual user logged in. 
 4. Add toaster for service errors.
+5. Use inheritance to customise BaseServices for setting headers.
 
 ## Further help
 
