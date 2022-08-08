@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
+import { cilMagnifyingGlass, flagSet } from '@coreui/icons';
+import { IconSetService } from '@coreui/icons-angular';
 
 @Component({
   selector: 'app-page500',
   templateUrl: './page500.component.html',
-  styleUrls: ['./page500.component.scss']
 })
 export class Page500Component {
 
-  constructor() { }
+  constructor(
+    public iconSet: IconSetService,
+  ) {
+    iconSet.icons = { cilMagnifyingGlass, ...flagSet };
+   }
 
 }

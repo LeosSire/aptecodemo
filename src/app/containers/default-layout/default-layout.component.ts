@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { cilDrop, cilSpeedometer, flagSet } from '@coreui/icons';
+import { IconSetService } from '@coreui/icons-angular';
 
 import { navItems } from './_nav';
 
@@ -14,5 +16,9 @@ export class DefaultLayoutComponent {
     suppressScrollX: true,
   };
 
-  constructor() {}
+  constructor(
+    public iconSet: IconSetService,
+  ) {
+    iconSet.icons = { cilSpeedometer, cilDrop, ...flagSet };
+   }
 }

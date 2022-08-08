@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardModule } from './views/dashboard/dashboard.module';
 import {
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -42,6 +41,7 @@ import {
 import { LoginService } from './services/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -59,12 +59,12 @@ const APP_CONTAINERS = [
     ...APP_CONTAINERS
   ],
   imports: [
+    BrowserModule,
     AppRoutingModule,
     AvatarModule,
     BadgeModule,
     BreadcrumbModule,
     BrowserAnimationsModule,
-    BrowserModule,
     ButtonGroupModule,
     ButtonModule,
     CardModule,
@@ -87,7 +87,7 @@ const APP_CONTAINERS = [
     SidebarModule,
     TabsModule,
     UtilitiesModule,
-
+    NgxDatatableModule,
   ],
   providers: [
     {
@@ -98,6 +98,8 @@ const APP_CONTAINERS = [
     LoginService,
     Title,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ]
 })
 export class AppModule { }

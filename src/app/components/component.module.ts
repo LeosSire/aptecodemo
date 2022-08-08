@@ -1,30 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IconModule } from '@coreui/icons-angular';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { IconModule } from '@coreui/icons-angular';
 import { CubesService } from 'src/app/services/cubes.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { CommonComponentsModule } from 'src/app/components/component.module';
-
+import { DatatableViewComponent } from './datatable/datatable.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    DashboardRoutingModule,
     IconModule,
     NgxDatatableModule,
     NgSelectModule,
-    CommonComponentsModule,
   ],
   declarations: [
-    DashboardComponent
-  ],
+      DatatableViewComponent,
+    ],
   providers: [
-    CubesService,
-  ]
+      CubesService,
+    ],
+  exports:[
+      DatatableViewComponent,
+    ]
 })
-export class DashboardModule {
+export class CommonComponentsModule {
 }

@@ -1,2 +1,29 @@
-<p>dashboard works!</p>
-{{cubesResponse | json}}
+<div class="dataFilters container">
+    <div class="row">
+        <div class="col">
+            <button (click)="getServerData()" class="btn btn-primary btn-sm">Retrieve data from server</button>
+        </div>
+        <div class="col">
+            <label for="countryFilterOptions">Refine countries</label>
+            <ng-select [multiple]="true" id="countryFilter" (change)="onCountrySelect($event)">
+                <ng-option *ngFor="let country of countryFilterOptions" [value]="country.id">
+                    {{country.name}}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col">
+            <label for="yearFilterOptions">Refine years</label>
+            <ng-select [multiple]="true" id="yearFilter" (change)="onYearSelect($event)">
+                <ng-option *ngFor="let year of yearFilterOptions" [value]="year">
+                    {{year}}
+                </ng-option>
+            </ng-select>
+        </div>
+    </div>
+</div>
+<div *ngIf="loaded">
+    <app-datatable [filteredColumns]="filteredColumns" [filteredRows]="filteredRows" [totals]="totals"></app-datatable>
+</div>
+<div *ngIf="!loaded" style="margin-top: 200px; display: flex;">
+    <img style="margin: 0 auto;" src="/assets/img/Ellipsis-3s-200px.gif">
+</div>

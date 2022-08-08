@@ -8,9 +8,6 @@ $enable-rtl: true;
 // Import styles with default layout.
 @import "~@coreui/coreui/scss/coreui";
 
-// Import Chart.js custom tooltips styles
-@import "~@coreui/chartjs/scss/coreui-chartjs";
-
 // perfect scrollbar theming for use with [perfectScrollbar] directive
 //@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 
@@ -24,3 +21,11 @@ $enable-rtl: true;
 
 // If you want to add something do it here
 @import "custom";
+
+//@import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
+
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+@import "~@ng-select/ng-select/themes/default.theme.css";

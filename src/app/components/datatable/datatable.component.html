@@ -1,0 +1,6 @@
+<ngx-datatable class="bootstrap" #mainTable [rows]="filteredRows" [columns]="filteredColumns">
+</ngx-datatable>
+
+<ngx-datatable class="bootstrap" #totalTable (scroll)="onScroll($event)" [rows]="totals" [headerHeight]="0"
+    [columns]="filteredColumns" [scrollbarH]="true">
+</ngx-datatable>

@@ -1,28 +1,29 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../models/user/login-response.model';
+import { LoginResponse } from '../models/user/response/login-response.model';
 import { BaseService } from './base.service';
 
+@AutoUnsubscribe()
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService extends BaseService<LoginResponse> implements OnDestroy {
 
   headers: HttpHeaders;
-  constructor(private http: HttpClient) {
+  constructor(public override http: HttpClient) {
+    super('Sessions/SimpleLogin', http)
     this.headers = new HttpHeaders()
     .set('content-type', 'application/x-www-form-urlencoded')
     .set('accept', 'application/json');
   }  
 
-  login(username: string, password: string): Observable<LoginResponse> {
-    const userLogin = {UserLogin: username, Password: password } as UserLogin
-    return this.http.post<LoginResponse>('https://www.tealgreenholidays.co.uk/OrbitAPI/CloudDemo/Sessions/SimpleLogin', `UserLogin=${username}&Password=${password}`, {headers: this.headers})
+  override ngOnDestroy(): void {
+    // Required for AutoUnsubscribe
   }
-}
 
-export class UserLogin {
-  UserLogin = "";
-  Password = "";
+  login(username: string, password: string): Observable<LoginResponse> {
+    return this.post(`UserLogin=${username}&Password=${password}`, this.headers)
+  }
 }

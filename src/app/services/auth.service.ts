@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { LoginResponse } from '../models/user/login-response.model';
-import { User } from '../models/user/user.model';
+import { LoginResponse } from '../models/user/response/login-response.model';
+import { User } from '../models/user/response/user.model';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -15,13 +15,12 @@ export class AuthService {
 
   constructor(
     public router: Router,
-    public ngZone: NgZone, // NgZone service to remove outside scope warning
     private loginService: LoginService,
   ) {
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(localStorage.getItem('DemoUser')!);
     return user !== null;
   }
 
@@ -32,24 +31,24 @@ export class AuthService {
   }
 
   getTokenData(key: string) {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(localStorage.getItem('DemoUser')!);
     return user[key];
   }
 
   getUserData(key: string) {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(localStorage.getItem('DemoUser')!);
     return user['user'][key];
   }
 
   getLicenceData(key: string) {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(localStorage.getItem('DemoUser')!);
     return user['licence'][key];
   }
 
   authLogin(username: string, password: string) {
-    localStorage.removeItem('user');
+    localStorage.removeItem('DemoUser');
     this.loginService.login(username, password).subscribe((user: LoginResponse) => {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('DemoUser', JSON.stringify(user));
       this.loggedIn.next(true);
       this.router.navigate(['/dashboard']);
     }, (err) => {
@@ -59,7 +58,7 @@ export class AuthService {
   }
 
   signOut() {
-    localStorage.setItem('user', '');
+    localStorage.setItem('DemoUser', '');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
